@@ -1,15 +1,23 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Outfit, Space_Grotesk, JetBrains_Mono } from "next/font/google"; // Added Space_Grotesk
 import "./globals.css";
+import CursorSpotlight from "./components/ui/CursorSpotlight";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spaceGrotesk = Space_Grotesk({ // Added config
+  variable: "--font-heading",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -25,8 +33,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${outfit.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased cursor-none`}
       >
+        <CursorSpotlight />
         {children}
       </body>
     </html>
