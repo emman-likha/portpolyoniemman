@@ -12,9 +12,21 @@ const navLinks = [
     { name: "Contact", href: "#contact" },
 ];
 
+const sectionIds = navLinks.map((l) => l.href.replace("#", ""));
+
+function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+    e.preventDefault();
+    const id = href.replace("#", "");
+    const el = document.getElementById(id);
+    if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+}
+
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState("");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -22,6 +34,30 @@ export default function Navbar() {
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Track active section with IntersectionObserver
+    useEffect(() => {
+        const observers: IntersectionObserver[] = [];
+
+        sectionIds.forEach((id) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            const observer = new IntersectionObserver(
+                ([entry]) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(id);
+                    }
+                },
+                { rootMargin: "-40% 0px -55% 0px" }
+            );
+
+            observer.observe(el);
+            observers.push(observer);
+        });
+
+        return () => observers.forEach((o) => o.disconnect());
     }, []);
 
     return (
@@ -37,15 +73,32 @@ export default function Navbar() {
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex space-x-8">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            className="text-foreground/80 hover:text-primary transition-colors text-sm font-medium"
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
+                    {navLinks.map((link) => {
+                        const isActive = activeSection === link.href.replace("#", "");
+                        return (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                onClick={(e) => scrollToSection(e, link.href)}
+                                className={`relative text-sm font-medium cursor-pointer transition-colors duration-300 group ${
+                                    isActive
+                                        ? "text-primary"
+                                        : "text-foreground/80 hover:text-primary"
+                                }`}
+                            >
+                                {link.name}
+                                {/* Active underline — always visible, animated from center */}
+                                <span
+                                    className="absolute left-1/2 -translate-x-1/2 -bottom-1 h-[2px] bg-primary transition-[width] duration-300 ease-out"
+                                    style={{ width: isActive ? "100%" : 0 }}
+                                />
+                                {/* Hover underline — expands from center on hover (non-active only) */}
+                                {!isActive && (
+                                    <span className="absolute left-1/2 -translate-x-1/2 -bottom-1 h-[2px] bg-primary w-0 group-hover:w-full transition-[width] duration-300 ease-out" />
+                                )}
+                            </a>
+                        );
+                    })}
                 </div>
 
                 {/* Mobile Toggle */}
@@ -67,16 +120,33 @@ export default function Navbar() {
                         className="md:hidden bg-background border-b border-border overflow-hidden"
                     >
                         <div className="flex flex-col items-center py-6 space-y-6">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className="text-foreground text-lg font-medium"
-                                    onClick={() => setIsOpen(false)}
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
+                            {navLinks.map((link) => {
+                                const isActive = activeSection === link.href.replace("#", "");
+                                return (
+                                    <a
+                                        key={link.name}
+                                        href={link.href}
+                                        className={`relative text-lg font-medium cursor-pointer transition-colors duration-300 group ${
+                                            isActive
+                                                ? "text-primary"
+                                                : "text-foreground hover:text-primary"
+                                        }`}
+                                        onClick={(e) => {
+                                            scrollToSection(e, link.href);
+                                            setIsOpen(false);
+                                        }}
+                                    >
+                                        {link.name}
+                                        <span
+                                            className="absolute left-1/2 -translate-x-1/2 -bottom-1 h-[2px] bg-primary transition-[width] duration-300 ease-out"
+                                            style={{ width: isActive ? "100%" : 0 }}
+                                        />
+                                        {!isActive && (
+                                            <span className="absolute left-1/2 -translate-x-1/2 -bottom-1 h-[2px] bg-primary w-0 group-hover:w-full transition-[width] duration-300 ease-out" />
+                                        )}
+                                    </a>
+                                );
+                            })}
                         </div>
                     </motion.div>
                 )}
