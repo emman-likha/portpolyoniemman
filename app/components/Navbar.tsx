@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -40,6 +39,21 @@ export default function Navbar() {
     useEffect(() => {
         const observers: IntersectionObserver[] = [];
 
+        // Watch the hero section — clear active state when hero is in view
+        const heroEl = document.getElementById("hero");
+        if (heroEl) {
+            const heroObserver = new IntersectionObserver(
+                ([entry]) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection("");
+                    }
+                },
+                { rootMargin: "-40% 0px -55% 0px" }
+            );
+            heroObserver.observe(heroEl);
+            observers.push(heroObserver);
+        }
+
         sectionIds.forEach((id) => {
             const el = document.getElementById(id);
             if (!el) return;
@@ -67,7 +81,7 @@ export default function Navbar() {
         >
             <div className="container mx-auto px-6 h-20 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="text-2xl font-bold tracking-tight text-foreground">
+                <Link href="/" className="text-base md:text-2xl font-bold tracking-tight text-foreground">
                     Portpolyo ni Emman.
                 </Link>
 
@@ -87,12 +101,10 @@ export default function Navbar() {
                                 }`}
                             >
                                 {link.name}
-                                {/* Active underline — always visible, animated from center */}
                                 <span
                                     className="absolute left-1/2 -translate-x-1/2 -bottom-1 h-[2px] bg-primary transition-[width] duration-300 ease-out"
                                     style={{ width: isActive ? "100%" : 0 }}
                                 />
-                                {/* Hover underline — expands from center on hover (non-active only) */}
                                 {!isActive && (
                                     <span className="absolute left-1/2 -translate-x-1/2 -bottom-1 h-[2px] bg-primary w-0 group-hover:w-full transition-[width] duration-300 ease-out" />
                                 )}
@@ -103,10 +115,27 @@ export default function Navbar() {
 
                 {/* Mobile Toggle */}
                 <button
-                    className="md:hidden text-foreground focus:outline-none"
+                    className="md:hidden relative w-8 h-8 flex items-center justify-center focus:outline-none"
                     onClick={() => setIsOpen(!isOpen)}
+                    aria-label="Toggle menu"
                 >
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
+                    <span className="flex flex-col justify-center items-center w-5 h-5">
+                        <motion.span
+                            animate={isOpen ? { rotate: 45, y: 0 } : { rotate: 0, y: -4 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="block w-5 h-[1.5px] bg-foreground rounded-full origin-center absolute"
+                        />
+                        <motion.span
+                            animate={isOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                            transition={{ duration: 0.15, ease: "easeInOut" }}
+                            className="block w-5 h-[1.5px] bg-foreground rounded-full absolute"
+                        />
+                        <motion.span
+                            animate={isOpen ? { rotate: -45, y: 0 } : { rotate: 0, y: 4 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="block w-5 h-[1.5px] bg-foreground rounded-full origin-center absolute"
+                        />
+                    </span>
                 </button>
             </div>
 

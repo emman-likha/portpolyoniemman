@@ -29,9 +29,15 @@ const fragment = /* glsl */ `
     void main() {
         vec2 pixelCoord = vUv * uResolution;
 
-        // Slow grain — updates ~1.5 times per second
-        float t = floor(uTime * 1.5);
-        float grain = hash(pixelCoord + t * 137.0);
+        // Smooth slow drift — blends between grain frames
+        float speed = 0.4;
+        float t = uTime * speed;
+        float frame = floor(t);
+        float blend = smoothstep(0.0, 1.0, fract(t));
+
+        float grain1 = hash(pixelCoord + frame * 137.0);
+        float grain2 = hash(pixelCoord + (frame + 1.0) * 137.0);
+        float grain = mix(grain1, grain2, blend);
 
         // Subtle centered noise
         grain = 0.5 + (grain - 0.5) * 0.4;

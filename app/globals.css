@@ -89,6 +89,5 @@ body {
 
 * {
   @apply border-border;
-  cursor: none !important;
-  /* Force hide default cursor for custom implementation */
+  cursor: default !important;
 }

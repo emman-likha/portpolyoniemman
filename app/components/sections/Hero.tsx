@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Download, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Button from "../ui/Button";
 import Section from "../Section";
 
@@ -16,12 +16,11 @@ export default function Hero() {
                     I craft accessible, pixel-perfect, and performant web experiences that blend form and function.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                    <Button size="lg" className="group">
-                        View My Work
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <Button size="lg" className="min-w-[160px]">
+                        Hire Me
                     </Button>
-                    <Button variant="outline" size="lg">
-                        <Download className="mr-2 h-4 w-4" /> Download Resume
+                    <Button variant="outline" size="lg" className="min-w-[160px]">
+                        View Resume
                     </Button>
                 </div>
             </div>
