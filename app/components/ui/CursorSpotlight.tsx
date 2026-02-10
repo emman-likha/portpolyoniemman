@@ -3,7 +3,7 @@
 import { useEffect, useRef, useCallback } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
-type HoverState = "default" | "text" | "clickable";
+type HoverState = "default" | "text" | "clickable" | "image";
 
 const TEXT_TAGS = new Set([
     "P", "H1", "H2", "H3", "H4", "H5", "H6",
@@ -15,23 +15,40 @@ const CURSOR_SIZES: Record<HoverState, number> = {
     default: 30,
     text: 120,
     clickable: 150,
+    image: 200,
 };
 
 // 8 points around the circle edge + center = 9 sample points
 const SAMPLE_ANGLES = [0, 45, 90, 135, 180, 225, 270, 315];
 
+function isImageEl(el: Element): boolean {
+    return !!(
+        (el instanceof HTMLElement && el.dataset.cursor === "image") ||
+        el.closest("[data-cursor='image']")
+    );
+}
+
 function isClickableEl(el: Element): boolean {
     const tag = el.tagName;
-    return (
+    if (
         tag === "BUTTON" ||
         tag === "A" ||
         tag === "INPUT" ||
         tag === "TEXTAREA" ||
         !!el.closest("button") ||
-        !!el.closest("a") ||
-        (el instanceof HTMLElement &&
-            window.getComputedStyle(el).cursor === "pointer")
-    );
+        !!el.closest("a")
+    ) return true;
+
+    // Check for cursor-pointer class (global CSS overrides computed style with !important)
+    if (el instanceof HTMLElement) {
+        if (el.classList.contains("cursor-pointer") ||
+            !!el.closest(".cursor-pointer")) return true;
+        // Check for role or onclick attributes
+        const role = el.getAttribute("role");
+        if (role === "button" || role === "link" || role === "tab" || role === "menuitem") return true;
+    }
+
+    return false;
 }
 
 function isTextEl(el: Element): boolean {
@@ -112,7 +129,11 @@ export default function CursorSpotlight() {
         (cx: number, cy: number, radius: number): HoverState => {
             const elements = getElementsInRadius(cx, cy, radius);
 
-            // Clickable takes highest priority
+            // Image takes highest priority
+            for (const el of elements) {
+                if (isImageEl(el)) return "image";
+            }
+            // Then clickable
             for (const el of elements) {
                 if (isClickableEl(el)) return "clickable";
             }

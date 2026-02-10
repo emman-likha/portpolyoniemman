@@ -138,7 +138,10 @@ export default function Projects() {
                     </div>
                 </div>
 
-                <div className="mt-12 text-center">
+                <div className="mt-8 flex flex-col sm:flex-row items-center sm:justify-between gap-3">
+                    <p className="text-sm text-muted-foreground">
+                        Showing {featuredProjects.length} of {projects.length} projects
+                    </p>
                     <Link href="/projects">
                         <Button variant="ghost" className="text-muted-foreground hover:text-primary">
                             View Full Project Archive <ArrowUpRight className="ml-1 w-4 h-4" />

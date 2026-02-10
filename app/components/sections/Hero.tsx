@@ -19,9 +19,11 @@ export default function Hero() {
                     <Button size="lg" className="min-w-[160px]">
                         Hire Me
                     </Button>
-                    <Button variant="outline" size="lg" className="min-w-[160px]">
-                        View Resume
-                    </Button>
+                    <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                        <Button variant="outline" size="lg" className="min-w-[160px]">
+                            View Resume
+                        </Button>
+                    </a>
                 </div>
             </div>
 

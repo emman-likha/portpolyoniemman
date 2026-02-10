@@ -7,24 +7,38 @@ export interface Experience {
 
 export const experiences: Experience[] = [
     {
-        company: "Tech Solutions Inc.",
-        role: "Senior Frontend Developer",
-        duration: "2023 - Present",
+        company: "ShoreAgents",
+        role: "Jr. Web Developer",
+        duration: "2025 - 2026",
         description:
-            "Leading the frontend team in rebuilding the core product dashboard using Next.js. Improved performance by 40%.",
+            "Developed and maintained web applications for internal tools and client-facing platforms. Collaborated with the team to ship features and improve existing systems.",
     },
     {
-        company: "Creative Agency",
-        role: "Frontend Developer",
-        duration: "2021 - 2023",
+        company: "Shore360 — Internship",
+        role: "Junior AI Developer",
+        duration: "2025",
         description:
-            "Developed award-winning marketing websites for global clients. Specialized in complex animations and interactive experiences.",
+            "Assisted in the design and development of an AI-driven system for enhanced traffic safety and management by testing and refining model outputs.",
     },
     {
-        company: "StartUp Hub",
-        role: "Junior Developer",
-        duration: "2020 - 2021",
+        company: "Don Honorio Ventura State University",
+        role: "Bachelor of Science in Computer Engineering",
+        duration: "2025",
         description:
-            "Collaborated on the MVP of a fintech application. Implemented responsive UI components and integrated REST APIs.",
+            "Completed a degree in Computer Engineering with coursework in software development, systems design, and embedded systems.",
+    },
+    {
+        company: "Hooplife Sports Apparel — Part-time",
+        role: "Graphic Designer",
+        duration: "2022 - 2025",
+        description:
+            "Created mockups for social media posting and print-ready jersey uniform design files.",
+    },
+    {
+        company: "Sushma Home Selling Team — Part-time",
+        role: "Video Editor",
+        duration: "2020",
+        description:
+            "Created infographic videos about real estate topics for marketing and social media content.",
     },
 ];

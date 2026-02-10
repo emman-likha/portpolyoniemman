@@ -12,72 +12,42 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: 1,
-        title: "E-Commerce Dashboard",
+        title: "Classic Civic",
         description:
-            "A comprehensive dashboard for managing products, orders, and customers. Features real-time analytics, inventory management, and a customizable widget system.",
-        tech: ["Next.js", "TypeScript", "Supabase", "Tailwind"],
+            "A fan site celebrating the heritage and evolution of classic Honda Civic automobiles. Features generation guides from 1973 onward, serving as a community hub for enthusiasts and collectors.",
+        tech: ["React", "Tailwind CSS"],
         status: "Live",
         liveUrl: "https://civic-blog.vercel.app/",
-        demoUrl: "#",
         repoUrl: "#",
     },
     {
         id: 2,
-        title: "Task Management App",
+        title: "My Scribble Tasks",
         description:
-            "Real-time task collaboration tool with drag-and-drop functionality using React and Firebase. Includes team workspaces, real-time updates, and activity logs.",
-        tech: ["React", "Firebase", "dnd-kit"],
-        status: "In Progress",
+            "A visually polished to-do list app designed to help users organize and manage daily tasks. Built with a focus on clean UI and a smooth user experience.",
+        tech: ["React", "Supabase"],
+        status: "Live",
         liveUrl: "https://todo-list-mu-nine-39.vercel.app/",
-        demoUrl: "#",
         repoUrl: "#",
     },
     {
         id: 3,
-        title: "Portfolio V1",
+        title: "Elegant Flowers",
         description:
-            "My previous portfolio site focused on minimalist design and typography. Built with vanilla HTML/CSS and JavaScript to master the fundamentals.",
-        tech: ["HTML/CSS", "JavaScript"],
+            "An e-commerce storefront for browsing and purchasing floral products online. Features a clean product catalog and a streamlined checkout flow.",
+        tech: ["Next.js", "Tailwind", "TypeScript"],
         status: "Live",
-        liveUrl: "https://www.google.com",
+        liveUrl: "https://flower-shop-ecommerce-red.vercel.app/",
         repoUrl: "#",
     },
     {
         id: 4,
-        title: "Weather Forecast App",
+        title: "Portfolio V1",
         description:
-            "A sleek weather application with location-based forecasts, animated weather icons, and a 7-day outlook. Integrates with OpenWeatherMap API for real-time data.",
-        tech: ["React", "OpenWeatherMap API", "CSS Modules"],
+            "My first personal portfolio site with smooth scroll navigation. Built with vanilla HTML, CSS, and JavaScript to master the fundamentals of web development.",
+        tech: ["React", "Tailwind CSS"],
         status: "Live",
-        liveUrl: "#",
-        repoUrl: "#",
-    },
-    {
-        id: 5,
-        title: "Chat Application",
-        description:
-            "Real-time messaging platform with WebSocket support, message history, typing indicators, and file sharing. Features end-to-end encryption for private conversations.",
-        tech: ["Next.js", "Socket.io", "PostgreSQL", "Prisma"],
-        status: "In Progress",
-        repoUrl: "#",
-    },
-    {
-        id: 6,
-        title: "Recipe Finder",
-        description:
-            "A recipe discovery app that lets users search by ingredients, dietary preferences, and cuisine type. Includes meal planning and grocery list features.",
-        tech: ["Vue.js", "Spoonacular API", "Tailwind"],
-        status: "Live",
-        liveUrl: "#",
-        repoUrl: "#",
-    },
-    {
-        id: 7,
-        title: "Fitness Tracker",
-        description:
-            "Personal fitness tracking dashboard with workout logging, progress charts, and goal setting. Syncs with wearable devices for automated data collection.",
-        tech: ["React Native", "Firebase", "Chart.js"],
-        status: "In Progress",
+        liveUrl: "https://emman-likha.vercel.app/",
         repoUrl: "#",
     },
 ];

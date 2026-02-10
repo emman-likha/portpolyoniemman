@@ -81,9 +81,16 @@ export default function Navbar() {
         >
             <div className="container mx-auto px-6 h-20 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="text-base md:text-2xl font-bold tracking-tight text-foreground">
+                <a
+                    href="#hero"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                    }}
+                    className="text-base md:text-2xl font-bold tracking-tight text-foreground cursor-pointer"
+                >
                     Portpolyo ni Emman.
-                </Link>
+                </a>
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex space-x-8">
