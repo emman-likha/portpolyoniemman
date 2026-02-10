@@ -1,19 +1,30 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useRef, type FormEvent } from "react";
 import { Mail, Send, Loader2, CheckCircle2 } from "lucide-react";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 import Button from "../ui/Button";
 import Section from "../Section";
 
 const WEB3FORMS_KEY = "19a69c5e-8a5a-454b-beda-09c7c17f1eef";
+const HCAPTCHA_SITE_KEY = "60e6e688-cc0a-49e4-84f2-1df492e476cc";
 
 export default function Contact() {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+    const [captchaToken, setCaptchaToken] = useState("");
     const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+    const captchaRef = useRef<HCaptcha>(null);
 
     async function handleSubmit(e: FormEvent) {
         e.preventDefault();
+
+        if (!captchaToken) {
+            setStatus("error");
+            setTimeout(() => setStatus("idle"), 4000);
+            return;
+        }
+
         setStatus("sending");
 
         try {
@@ -26,6 +37,8 @@ export default function Contact() {
                     message,
                     from_name: "Portfolio Contact Form",
                     subject: `New message from ${email}`,
+                    botcheck: "",
+                    "h-captcha-response": captchaToken,
                 }),
             });
 
@@ -33,6 +46,8 @@ export default function Contact() {
                 setStatus("sent");
                 setEmail("");
                 setMessage("");
+                setCaptchaToken("");
+                captchaRef.current?.resetCaptcha();
                 setTimeout(() => setStatus("idle"), 4000);
             } else {
                 setStatus("error");
@@ -83,12 +98,21 @@ export default function Contact() {
                         />
                     </div>
 
+                    <div className="flex justify-center">
+                        <HCaptcha
+                            sitekey={HCAPTCHA_SITE_KEY}
+                            onVerify={(token) => setCaptchaToken(token)}
+                            onExpire={() => setCaptchaToken("")}
+                            ref={captchaRef}
+                        />
+                    </div>
+
                     <div className="pt-2">
                         <Button
                             type="submit"
                             size="lg"
                             className="w-full gap-2"
-                            disabled={status === "sending" || status === "sent"}
+                            disabled={status === "sending" || status === "sent" || !captchaToken}
                         >
                             {status === "sending" && (
                                 <>
