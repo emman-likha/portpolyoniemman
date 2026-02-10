@@ -7,7 +7,7 @@ import Button from "../ui/Button";
 import Section from "../Section";
 
 const WEB3FORMS_KEY = "19a69c5e-8a5a-454b-beda-09c7c17f1eef";
-const HCAPTCHA_SITE_KEY = "60e6e688-cc0a-49e4-84f2-1df492e476cc";
+const HCAPTCHA_SITE_KEY = "50b2fe65-b00b-4b9e-ad62-3ba471098be2";
 
 export default function Contact() {
     const [email, setEmail] = useState("");
