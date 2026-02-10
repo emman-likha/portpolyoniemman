@@ -5,6 +5,8 @@ import { Mail, Send, Loader2, CheckCircle2 } from "lucide-react";
 import Button from "../ui/Button";
 import Section from "../Section";
 
+const WEB3FORMS_KEY = "19a69c5e-8a5a-454b-beda-09c7c17f1eef";
+
 export default function Contact() {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
@@ -15,10 +17,16 @@ export default function Contact() {
         setStatus("sending");
 
         try {
-            const res = await fetch("/api/contact", {
+            const res = await fetch("https://api.web3forms.com/submit", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, message }),
+                body: JSON.stringify({
+                    access_key: WEB3FORMS_KEY,
+                    email,
+                    message,
+                    from_name: "Portfolio Contact Form",
+                    subject: `New message from ${email}`,
+                }),
             });
 
             if (res.ok) {
