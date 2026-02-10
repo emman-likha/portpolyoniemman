@@ -25,14 +25,14 @@ export async function POST(request: Request) {
             }),
         });
 
-        const data = await res.json();
+        const text = await res.text();
 
         if (!res.ok) {
-            return NextResponse.json({ error: "Failed to send message" }, { status: res.status });
+            return NextResponse.json({ error: "Web3Forms error", status: res.status, detail: text }, { status: res.status });
         }
 
-        return NextResponse.json(data);
-    } catch {
-        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+        return NextResponse.json(JSON.parse(text));
+    } catch (err) {
+        return NextResponse.json({ error: String(err) }, { status: 500 });
     }
 }
