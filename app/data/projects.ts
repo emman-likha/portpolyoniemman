@@ -22,26 +22,16 @@ export const projects: Project[] = [
     },
     {
         id: 2,
-        title: "My Scribble Tasks",
+        title: "Paxx",
         description:
-            "A visually polished to-do list app designed to help users organize and manage daily tasks. Built with a focus on clean UI and a smooth user experience.",
-        tech: ["React", "Supabase"],
+            "A modern password manager for teams and individuals. Features encrypted vault storage, real-time sync, password generator, auto-fill, and secure credential sharing — all built on a zero-knowledge architecture with AES-256 encryption.",
+        tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
         status: "Live",
-        liveUrl: "https://todo-list-mu-nine-39.vercel.app/",
+        liveUrl: "https://paxx-gamma.vercel.app/",
         repoUrl: "#",
     },
     {
         id: 3,
-        title: "Elegant Flowers",
-        description:
-            "An e-commerce storefront for browsing and purchasing floral products online. Features a clean product catalog and a streamlined checkout flow.",
-        tech: ["Next.js", "Tailwind", "TypeScript"],
-        status: "Live",
-        liveUrl: "https://flower-shop-ecommerce-red.vercel.app/",
-        repoUrl: "#",
-    },
-    {
-        id: 4,
         title: "Portfolio V1",
         description:
             "My first personal portfolio site with smooth scroll navigation. Built with vanilla HTML, CSS, and JavaScript to master the fundamentals of web development.",
