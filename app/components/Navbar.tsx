@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+
 
 const navLinks = [
     { name: "About", href: "#about" },
@@ -13,19 +14,72 @@ const navLinks = [
 
 const sectionIds = navLinks.map((l) => l.href.replace("#", ""));
 
-function scrollToSection(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
-    e.preventDefault();
-    const id = href.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+function AnimatedLogo() {
+    const texts = ["Portpolyo ni Emman", "Emman's Portfolio"];
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIndex((prev) => (prev + 1) % texts.length);
+        }, 4000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <div className="relative inline-block h-8 overflow-hidden pointer-events-none">
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={index}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    className="flex"
+                >
+                    {texts[index].split("").map((char, i) => (
+                        <motion.span
+                            key={i}
+                            variants={{
+                                initial: { rotateX: -90, opacity: 0 },
+                                animate: { rotateX: 0, opacity: 1 },
+                                exit: { rotateX: 90, opacity: 0 },
+                            }}
+                            transition={{
+                                duration: 0.5,
+                                delay: i * 0.03,
+                                ease: [0.215, 0.61, 0.355, 1],
+                            }}
+                            className="inline-block whitespace-pre"
+                        >
+                            {char}
+                        </motion.span>
+                    ))}
+                </motion.div>
+            </AnimatePresence>
+        </div>
+    );
 }
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("");
+    const scrollToSection = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        e.preventDefault();
+        const id = href.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+            const offset = 80;
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = element.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+            });
+        }
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -87,9 +141,9 @@ export default function Navbar() {
                         e.preventDefault();
                         window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
-                    className="text-base md:text-2xl font-bold tracking-tight text-foreground cursor-pointer"
+                    className="text-base md:text-2xl font-bold tracking-tight text-foreground cursor-pointer flex items-center"
                 >
-                    Portpolyo ni Emman.
+                    <AnimatedLogo />
                 </a>
 
                 {/* Desktop Menu */}
@@ -101,11 +155,10 @@ export default function Navbar() {
                                 key={link.name}
                                 href={link.href}
                                 onClick={(e) => scrollToSection(e, link.href)}
-                                className={`relative text-sm font-medium cursor-pointer transition-colors duration-300 group ${
-                                    isActive
-                                        ? "text-primary"
-                                        : "text-foreground/80 hover:text-primary"
-                                }`}
+                                className={`relative text-sm font-medium cursor-pointer transition-colors duration-300 group ${isActive
+                                    ? "text-primary"
+                                    : "text-foreground/80 hover:text-primary"
+                                    }`}
                             >
                                 {link.name}
                                 <span
@@ -162,11 +215,10 @@ export default function Navbar() {
                                     <a
                                         key={link.name}
                                         href={link.href}
-                                        className={`relative text-lg font-medium cursor-pointer transition-colors duration-300 group ${
-                                            isActive
-                                                ? "text-primary"
-                                                : "text-foreground hover:text-primary"
-                                        }`}
+                                        className={`relative text-lg font-medium cursor-pointer transition-colors duration-300 group ${isActive
+                                            ? "text-primary"
+                                            : "text-foreground hover:text-primary"
+                                            }`}
                                         onClick={(e) => {
                                             scrollToSection(e, link.href);
                                             setIsOpen(false);

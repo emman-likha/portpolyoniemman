@@ -4,6 +4,8 @@ import CursorSpotlight from "./components/ui/CursorSpotlight";
 import GrainOverlay from "./components/ui/GrainOverlay";
 import { Metadata } from "next";
 
+
+
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
@@ -35,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${outfit.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased cursor-none`}
+        className={`${outfit.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <CursorSpotlight />
         <GrainOverlay />
