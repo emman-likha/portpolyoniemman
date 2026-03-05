@@ -7,10 +7,10 @@ import Section from "../Section";
 export default function Hero() {
     return (
         <Section id="hero" className="text-center pt-32">
-            <div className="space-y-6 max-w-3xl mx-auto">
-                <p className="text-primary font-medium tracking-wide uppercase text-sm">Hello, I'm a Developer</p>
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-tight">
-                    Building digital <span className="text-primary text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">experiences</span> with purpose.
+            <div className="space-y-6 max-w-5xl mx-auto px-4">
+                <p className="text-primary font-medium tracking-wide uppercase text-sm md:text-base">Hello, I'm a Developer</p>
+                <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[7.5rem] font-bold tracking-tighter text-foreground leading-[1.1]">
+                    Building digital <span className="text-primary text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary pb-2 pr-2">experiences</span> with purpose.
                 </h1>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                     I craft accessible, pixel-perfect, and performant web experiences that blend form and function.
