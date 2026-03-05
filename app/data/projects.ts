@@ -22,6 +22,16 @@ export const projects: Project[] = [
     },
     {
         id: 2,
+        title: "Inventra",
+        description:
+            "A SaaS platform for intelligent asset management — tracking physical and digital assets like laptops, vehicles, and software licenses from a centralized dashboard. Replaces spreadsheets with automated lifecycle management, assignment tracking, and real-time reporting.",
+        tech: ["React", "Tailwind CSS"],
+        status: "In Progress",
+        liveUrl: "https://inventra-five.vercel.app/",
+        repoUrl: "#",
+    },
+    {
+        id: 3,
         title: "Paxx",
         description:
             "A modern password manager for teams and individuals. Features encrypted vault storage, real-time sync, password generator, auto-fill, and secure credential sharing — all built on a zero-knowledge architecture with AES-256 encryption.",
@@ -31,7 +41,7 @@ export const projects: Project[] = [
         repoUrl: "#",
     },
     {
-        id: 3,
+        id: 4,
         title: "Portfolio V1",
         description:
             "My first personal portfolio site with smooth scroll navigation. Built with vanilla HTML, CSS, and JavaScript to master the fundamentals of web development.",
