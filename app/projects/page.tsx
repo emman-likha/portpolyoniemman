@@ -130,19 +130,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                         <span>Visit</span>
                     </a>
                 )}
-                {project.liveUrl && project.repoUrl && (
+                {project.liveUrl && (
                     <span className="w-px h-3.5 bg-[#FAF8F3]/10 dark:bg-[#E8E4DB]/10" />
-                )}
-                {project.repoUrl && (
-                    <a
-                        href={project.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm text-[#D6CFC7] dark:text-[#4A4946] hover:text-[#FAF8F3] dark:hover:text-[#383734] transition-colors"
-                    >
-                        <Github size={15} />
-                        <span>Code</span>
-                    </a>
                 )}
             </div>
         </motion.article>
