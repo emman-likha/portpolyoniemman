@@ -117,13 +117,6 @@ export default function Projects() {
                                                         </Button>
                                                     </a>
                                                 )}
-                                                {project.repoUrl && (
-                                                    <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                                                        <Button variant="outline" size="sm" className="gap-2">
-                                                            <Github size={16} /> View Code
-                                                        </Button>
-                                                    </a>
-                                                )}
                                             </div>
                                         </div>
 
