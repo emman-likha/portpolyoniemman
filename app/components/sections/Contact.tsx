@@ -60,8 +60,8 @@ export default function Contact() {
     }
 
     return (
-        <Section id="contact" className="bg-card/50">
-            <div className="max-w-xl mx-auto text-center space-y-8">
+        <Section id="contact">
+            <div className="max-w-xl mx-auto text-center space-y-8 bg-card/50 px-10 py-10">
                 <h2 className="text-3xl md:text-4xl font-bold">Let&apos;s Work Together</h2>
                 <p className="text-muted-foreground text-lg">
                     I&apos;m currently available for freelance projects and full-time opportunities. If you have a project that needs some creative touch, I&apos;d love to hear from you.

@@ -6,7 +6,6 @@ export interface Project {
     status: "Live" | "In Progress";
     liveUrl?: string;
     demoUrl?: string;
-    repoUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -18,7 +17,6 @@ export const projects: Project[] = [
         tech: ["NextJS", "TypeScript", "Tailwind CSS", "ExpressJS", "PostgreSQL"],
         status: "In Progress",
         liveUrl: "https://evrwrcareers.vercel.app/",
-        repoUrl: "#",
     },
     {
         id: 2,
@@ -28,7 +26,6 @@ export const projects: Project[] = [
         tech: ["NextJS", "TypeScript", "Supabase", "Tailwind CSS"],
         status: "In Progress",
         liveUrl: "https://inventra-five.vercel.app/",
-        repoUrl: "#",
     },
     {
         id: 3,
@@ -39,7 +36,6 @@ export const projects: Project[] = [
         tech: ["React", "Tailwind CSS"],
         status: "Live",
         liveUrl: "https://civic-blog.vercel.app/",
-        repoUrl: "#",
     },
     {
         id: 4,
@@ -49,7 +45,6 @@ export const projects: Project[] = [
         tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
         status: "Live",
         liveUrl: "https://paxx-gamma.vercel.app/",
-        repoUrl: "#",
     },
     {
         id: 5,
@@ -59,6 +54,5 @@ export const projects: Project[] = [
         tech: ["React", "Tailwind CSS"],
         status: "Live",
         liveUrl: "https://emman-likha.vercel.app/",
-        repoUrl: "#",
     },
 ];
