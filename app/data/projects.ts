@@ -63,6 +63,5 @@ export const projects: Project[] = [
         tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
         status: "Live",
         liveUrl: "https://markitdown-sable.vercel.app/",
-        repoUrl: "#",
     },
 ];
