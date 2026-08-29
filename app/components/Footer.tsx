@@ -13,19 +13,15 @@ export default function Footer() {
                 </div>
 
                 <div className="flex space-x-6">
-                    <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                    <a href="https://github.com/emman-likha" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                         <Github size={20} />
                         <span className="sr-only">GitHub</span>
                     </a>
-                    <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                    <a href="https://www.linkedin.com/in/john-emmanuel-bulaon/" target="_blank" className="text-muted-foreground hover:text-primary transition-colors">
                         <Linkedin size={20} />
                         <span className="sr-only">LinkedIn</span>
                     </a>
-                    <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                        <Twitter size={20} />
-                        <span className="sr-only">Twitter</span>
-                    </a>
-                    <a href="mailto:hello@example.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    <a href="mailto:bulaonjohnemm4nuel.21@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
                         <Mail size={20} />
                         <span className="sr-only">Email</span>
                     </a>
