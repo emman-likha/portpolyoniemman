@@ -50,4 +50,14 @@ export const projects: Project[] = [
         liveUrl: "https://emman-likha.vercel.app/",
         repoUrl: "#",
     },
+    {
+        id: 5,
+        title: "Markitdown",
+        description:
+            "A professional writing tool that empowers you to create compelling content with smart suggestions. Features include AI-powered editing, real-time collaboration, and advanced analytics to enhance your writing.",
+        tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+        status: "Live",
+        liveUrl: "https://markitdown-sable.vercel.app/",
+        repoUrl: "#",
+    },
 ];
