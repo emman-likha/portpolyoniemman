@@ -7,6 +7,13 @@ export interface Experience {
 
 export const experiences: Experience[] = [
     {
+        company: "Shore306",
+        role: "Junior AI Engineer",
+        duration: "2026 - Present",
+        description:
+            "Develop and implement AI-powered workflows to significantly accelerate project building phases. Directly engage with clients to understand their needs and deliver tailored automation solutions.",
+    },
+    {
         company: "ShoreAgents",
         role: "Jr. Web Developer",
         duration: "2025 - 2026",
